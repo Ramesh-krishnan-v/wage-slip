@@ -19,7 +19,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import XLSX from 'xlsx';
+import { read, utils } from 'xlsx';
+
+import ViewSelection from './DisplayComponents/ViewSelection.js'
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -92,17 +94,17 @@ export default function Dashboard() {
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-
     reader.onload = (e) => {
       const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
+      const workbook = read(data, { type: 'array' });
 
       // Get the first sheet
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
 
       // Convert worksheet to JSON
-      const json = XLSX.utils.sheet_to_json(worksheet);
+      const json = utils.sheet_to_json(worksheet);
+      console.log('json', json)
       setJsonData(json);
     };
 
@@ -174,7 +176,7 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-				<Grid container item display='flex' justifyContent='flex-end' xs={12} md={12} lg={12} spacing={2}>
+				<Grid container item display='flex' justifyContent='flex-end' xs={12} md={12} lg={12}>
 					<Grid item>
 						<Button
 							component="label"
@@ -187,9 +189,6 @@ export default function Dashboard() {
 							<VisuallyHiddenInput type="file"  onChange={handleFileUpload}/>
 						</Button>
 					</Grid>
-					<Grid item>
-						<Button variant="contained">Contained</Button>
-					</Grid>
 				</Grid>
               <Grid item xs={12} md={12} lg={12}>
                 <Paper
@@ -197,10 +196,15 @@ export default function Dashboard() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 500,
+					overflow: 'auto',
                   }}
                 >
-                  No data to be displayed
+                  { 
+				  jsonData ?
+				  <ViewSelection displayData={jsonData}/> : 
+				  <h1> No data to be displayed </h1>
+                  }
+
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
