@@ -1,28 +1,67 @@
-import * as React from 'react';
+import React, { useState, useRef } from 'react';
 import { createTheme } from '@mui/material/styles';
-import { Grid, TextField, Button } from '@mui/material';
-import { Formik, Form } from 'formik'; // Removed Field and ErrorMessage imports
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import WageFile from './WageFile'
+import { Grid, TextField, Button, Pagination } from '@mui/material';
+import { Formik, Form } from 'formik'; 
+import WageFile from './WageFile';
+
 const defaultTheme = createTheme();
 
 export default function WageView({ displayData, setDates, dates }) {
-    const [showWage, setShowWage] = React.useState(false);
+    const [showWage, setShowWage] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 20; // Two components per page
+    const totalPages = Math.ceil(displayData.length / itemsPerPage);
+    const pdfRef = useRef();
+
     const initialValues = {
         date: '',
         wagePeriodFrom: '',
         wagePeriodTo: ''
     };
 
+    const formatDate = (dateStr) => {
+        const date = new Date(dateStr);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'long' });
+        const year = date.getFullYear();
+        return `${day} ${month} ${year}`;
+    }
+
     const handleSubmit = (values) => {
-        console.log(values);
-        setDates({ date: values.date, wagePeriodFrom: values.wagePeriodFrom, wagePeriodTo: values.wagePeriodTo });
+        setDates({
+            date: formatDate(values.date),
+            wagePeriodFrom: formatDate(values.wagePeriodFrom),
+            wagePeriodTo: formatDate(values.wagePeriodTo)
+        });
         setShowWage(true);
     };
 
+
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const renderData = displayData
+        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+        .map((e, index) => {
+            const sequentialIndex = (currentPage - 1) * itemsPerPage + index + 1;
+            return (
+              <WageFile key={sequentialIndex} index={sequentialIndex} wageData={e} dates={dates} />
+            );
+          });
+
+        const componentRef = useRef();
+
+  const handlePrint = () => {
+    const content = componentRef.current.innerHTML;
+    const originalDocument = document.body.innerHTML;
+    document.body.innerHTML = content;
+    window.print();
+    document.body.innerHTML = originalDocument;
+  };
+
     return (
-        <React.Fragment> {/* Added a React.Fragment wrapper */}
+        <React.Fragment>
             {!dates ? (
                 <Formik
                     initialValues={initialValues}
@@ -43,7 +82,7 @@ export default function WageView({ displayData, setDates, dates }) {
                 >
                     {({ values, errors, touched, handleChange, handleBlur }) => (
                         <Form>
-                            <Grid sx={{ ml: 1, mr: 2 }}>
+                            <Grid ref={pdfRef} sx={{ ml: 1, mr: 2 }}>
                                 <Grid container direction='row' spacing={2}>
                                     <Grid item xs={2}>
                                         <TextField
@@ -103,7 +142,28 @@ export default function WageView({ displayData, setDates, dates }) {
                     )}
                 </Formik>
             ) : (
-                <WageFile displayData={displayData} dates={dates}/>
+                <React.Fragment>
+
+                    <Button variant="contained" onClick={handlePrint} sx={{ marginBottom: '1rem' }}>
+                        Print Table
+                    </Button>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        sx={{ mt: 2 }}
+                    />
+                     <div ref={componentRef}>
+
+                        {renderData}
+                    </div>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        sx={{ mt: 2 }}
+                    />
+                </React.Fragment>
             )}
         </React.Fragment>
     );
