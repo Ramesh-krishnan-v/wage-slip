@@ -136,24 +136,24 @@ const CustomTableCell = ({ children, ...props }) => {
                   <CustomTableCell component="th" scope="row">{d.Sr}</CustomTableCell>
                   <CustomTableCell >{d?.HRMSID}</CustomTableCell>
                   <CustomTableCell >{d?.FNAME}</CustomTableCell>
-                  <CustomTableCell >{Math.round(d?.DAYS)}</CustomTableCell>
-                  <CustomTableCell >{Math.round(d?.OT_1 * 100) / 100}</CustomTableCell>                 
-                  <CustomTableCell >{d?.BASIC}</CustomTableCell>                 
-                  <CustomTableCell >{d?.HRA}</CustomTableCell>
-                  <CustomTableCell >{d?.PH}</CustomTableCell>                 
-                  <CustomTableCell >{d?.OT_2}</CustomTableCell>
-                  <CustomTableCell >{d?.TOTALLOW}</CustomTableCell>
-                  <CustomTableCell >{d?.PFEMPL}</CustomTableCell>
-                  <CustomTableCell >{d?.ESIEMPL}</CustomTableCell>
-                  <CustomTableCell >{d?.PTAX}</CustomTableCell>
-                  <CustomTableCell >{d?.ADV}</CustomTableCell>
-                  <CustomTableCell >{d?.LUN}</CustomTableCell>
-                  <CustomTableCell >{d?.TIFN}</CustomTableCell> 
-                  <CustomTableCell >{d?.SHOE}</CustomTableCell>
-                  <CustomTableCell >{d?.RENT}</CustomTableCell>
-                  <CustomTableCell >{d?.DED}</CustomTableCell>
-                  <CustomTableCell >{d?.TDED}</CustomTableCell> 
-                  <CustomTableCell >{Math.round(d?.NET)}</CustomTableCell>
+                  <CustomTableCell >{d?.DAYS ? Math.round(d?.DAYS) : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.OT_1 ? Math.round(d?.OT_1 * 100) / 100 : ""}</CustomTableCell>                 
+                  <CustomTableCell >{d?.BASIC ? Math.round(d?.BASIC * 100) / 100 : ""}</CustomTableCell>                 
+                  <CustomTableCell >{d?.HRA ? Math.round(d?.HRA * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.PH ? Math.round(d?.PH * 100) / 100: ""}</CustomTableCell>                 
+                  <CustomTableCell >{d?.OT_2 ? Math.round(d?.OT_2 * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.TOTALLOW ? Math.round(d?.TOTALLOW * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.PFEMPL ? Math.round(d?.PFEMPL * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.ESIEMPL ? Math.round(d?.ESIEMPL * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.PTAX ? Math.round(d?.PTAX * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.ADV ? Math.round(d?.ADV * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.LUN ? Math.round(d?.LUN * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.TIFN ? Math.round(d?.TIFN * 100) / 100 : ""}</CustomTableCell> 
+                  <CustomTableCell >{d?.SHOE ? Math.round(d?.SHOE * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.RENT ? Math.round(d?.RENT * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.DED ? Math.round(d?.DED * 100) / 100 : ""}</CustomTableCell>
+                  <CustomTableCell >{d?.TDED ? Math.round(d?.TDED * 100) / 100 : ""}</CustomTableCell> 
+                  <CustomTableCell >{d?.NET ? Math.round(d?.NET) : ""}</CustomTableCell>
                 </TableRow>
               ))}
             </TableBody>

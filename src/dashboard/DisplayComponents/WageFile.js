@@ -170,7 +170,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.DA ?? ""}
+                                                                {Math.round(wageData?.DA * 100) / 100 ?? ""}
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -185,7 +185,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                                {wageData?.HRA}
+                                                                {wageData?.HRA ? Math.round(wageData?.HRA * 100) / 100 : ""} 
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -200,7 +200,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.OT_2}
+                                                                {wageData?.OT_2 ? Math.round(wageData?.OT_2 * 100) / 100 : ""}  
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -215,7 +215,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.PH}
+                                                                {wageData?.PH ? Math.round(wageData?.PH * 100) / 100 : ""} 
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -245,7 +245,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.TOTALLOW}
+                                                                {wageData?.TOTALLOW ? Math.round(wageData?.TOTALLOW * 100) / 100 : ""} 
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -281,7 +281,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>
                                                         <GridVerticalBorder item xs={4}style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.TOTALLOW}                                                        
+                                                                {wageData?.TOTALLOW ? Math.round(wageData?.TOTALLOW * 100) / 100 : ""}                                                 
                                                             </Typography>
                                                         </GridVerticalBorder>
                                                         <GridVerticalBorder item xs={1} >
@@ -328,7 +328,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                             </SubTitleGrid>
                                                             <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Typography variant="subtitle1" >
-                                                                {wageData?.PFEMPL}
+                                                                    {wageData?.PFEMPL ? Math.round(wageData?.PFEMPL * 100) / 100 : ""} 
                                                                 </Typography>
                                                             </Grid>
                                                             <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -358,7 +358,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                             </SubTitleGrid>
                                                             <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Typography variant="subtitle1">
-                                                                {wageData?.ESIEMPL}
+                                                                    {wageData?.ESIEMPL ? Math.round(wageData?.ESIEMPL * 100) / 100 :  ""}  
                                                                 </Typography>
                                                             </Grid>
                                                             <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -388,7 +388,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                             </SubTitleGrid>
                                                             <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Typography variant="subtitle1">
-                                                                {wageData?.PTAX}
+                                                                    {wageData?.PTAX ? Math.round(wageData?.PTAX * 100) / 100 : ""}  
                                                                 </Typography>
                                                             </Grid>
                                                             <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -418,7 +418,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                             </SubTitleGrid>
                                                             <Grid item xs={6} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Typography variant="subtitle1">
-                                                                {wageData?.DED}
+                                                                    {wageData?.DED ? Math.round(wageData?.DED * 100) / 100 : ""}  
                                                                 </Typography>
                                                             </Grid>
                                                             <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -429,7 +429,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </Grid>                                                   
                                                         <GridVerticalBorder item xs={4} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.TDED}
+                                                                {wageData?.TDED ? Math.round(wageData?.TDED * 100) / 100 : ""}
                                                             </Typography>
                                                         </GridVerticalBorder>
                                                         <GridVerticalBorder item xs={1}>
@@ -448,7 +448,7 @@ export default function WageFile({ wageData, dates, index }) {
                                                         </SubTitleGrid>                                                   
                                                         <Grid item xs={4} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                                             <Typography variant="subtitle1">
-                                                            {wageData?.NET}
+                                                                {wageData?.NET ? Math.round(wageData?.NET * 100) / 100 : ""}
                                                             </Typography>
                                                         </Grid>
                                                         <Grid item xs={1} style={{ border: '1px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
